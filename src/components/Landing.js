@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from "react";
-import CodeEditorWindow from "./CodeEditorWindow";
 import axios from "axios";
 import { classnames } from "../utils/general";
 import { languageOptions } from "../constants/languageOptions";
@@ -12,7 +11,6 @@ import useKeyPress from "../hooks/useKeyPress";
 import OutputWindow from "./OutputWindow";
 import CustomInput from "./CustomInput";
 import OutputDetails from "./OutputDetails";
-import ThemeDropdown from "./ThemeDropdown";
 import LanguagesDropdown from "./LanguagesDropdown";
 import ACTIONS from '../Actions';
 import Editor from "./Editor";
