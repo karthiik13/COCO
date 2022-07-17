@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { v4 as uuidV4 } from 'uuid';
 import toast from 'react-hot-toast';
+import { classnames } from "../utils/general";
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
@@ -60,8 +61,10 @@ const Home = () => {
                         value={username}
                         onKeyUp={handleInputEnter}
                     />
-                    <button className="btn joinBtn" onClick={joinRoom}>
-                        Join
+                    <button className={classnames(
+                "mt-4 border-2 border-black z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white flex-shrink w-32 text-black self-end"
+              )} onClick={joinRoom}>
+                        {"Join"}
                     </button>
                     <span className="createInfo">
                         If you don't have an invite then create&nbsp;

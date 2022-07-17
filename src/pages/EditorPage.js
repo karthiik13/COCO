@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import ACTIONS from '../Actions';
 import Client from '../components/Client';
-import Editor from '../components/Editor';
 import { initSocket } from '../socket';
 import {
     useLocation,
@@ -10,6 +9,10 @@ import {
     Navigate,
     useParams,
 } from 'react-router-dom';
+import Landing from '../components/Landing';
+import { classnames } from "../utils/general";
+
+const javascriptDefault = `//Write your code here`;
 
 const EditorPage = () => {
     const socketRef = useRef(null);
@@ -18,7 +21,7 @@ const EditorPage = () => {
     const { roomId } = useParams();
     const reactNavigator = useNavigate();
     const [clients, setClients] = useState([]);
-
+    const [code, setCode] = useState(javascriptDefault);
     useEffect(() => {
         const init = async () => {
             socketRef.current = await initSocket();
@@ -112,20 +115,26 @@ const EditorPage = () => {
                         ))}
                     </div>
                 </div>
-                <button className="btn copyBtn" onClick={copyRoomId}>
-                    Copy ROOM ID
+                <button className={classnames(
+                "mt-4 border-2 border-black z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white flex-shrink w-40 text-black self-center"
+              )} onClick={copyRoomId}>
+                    Copy Room ID
                 </button>
-                <button className="btn leaveBtn" onClick={leaveRoom}>
+                <button className={classnames(
+                "mt-4 border-2 border-black z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white flex-shrink w-32 text-black self-center"
+              )} onClick={leaveRoom}>
                     Leave
                 </button>
             </div>
             <div className="editorWrap">
-                <Editor
+                <Landing
                     socketRef={socketRef}
                     roomId={roomId}
-                    onCodeChange={(code) => {
-                        codeRef.current = code;
+                    onCodeChange={(text) => {
+                        setCode(text);
+                        codeRef.current = text;
                     }}
+                    code={code}
                 />
             </div>
         </div>
