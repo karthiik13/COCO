@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import ACTIONS from '../Actions';
 import Client from '../components/Client';
-import Editor from '../components/Editor';
 import { initSocket } from '../socket';
 import {
     useLocation,
@@ -10,6 +9,9 @@ import {
     Navigate,
     useParams,
 } from 'react-router-dom';
+import Landing from '../components/Landing';
+
+const javascriptDefault = `//Write your code here`;
 
 const EditorPage = () => {
     const socketRef = useRef(null);
@@ -18,7 +20,7 @@ const EditorPage = () => {
     const { roomId } = useParams();
     const reactNavigator = useNavigate();
     const [clients, setClients] = useState([]);
-
+    const [code, setCode] = useState(javascriptDefault);
     useEffect(() => {
         const init = async () => {
             socketRef.current = await initSocket();
@@ -120,12 +122,14 @@ const EditorPage = () => {
                 </button>
             </div>
             <div className="editorWrap">
-                <Editor
+                <Landing
                     socketRef={socketRef}
                     roomId={roomId}
-                    onCodeChange={(code) => {
-                        codeRef.current = code;
+                    onCodeChange={(text) => {
+                        setCode(text);
+                        codeRef.current = text;
                     }}
+                    code={code}
                 />
             </div>
         </div>

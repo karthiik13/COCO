@@ -3,13 +3,13 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import Home from './pages/Home';
 import EditorPage from './pages/EditorPage';
-import Landing from "./components/Landing";
 
 function App() {
+
+
     return (
         <>
             <div>
-                <Landing />
                 <Toaster
                     position="top-right"
                     toastOptions={{

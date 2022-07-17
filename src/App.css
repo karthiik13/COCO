@@ -44,7 +44,7 @@ footer a {
     outline: none;
     border: none;
     margin-bottom: 14px;
-    background: #eee;
+    background: rgb(0, 0, 0);
     font-size: 16px;
     font-weight: bold;
 }
@@ -95,7 +95,7 @@ footer a:hover {
 }
 
 .aside {
-    background: #1c1e29;
+    background: #b9bccb;
     padding: 16px;
     color: #fff;
     display: flex;
